@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+
+        <variable
+            name="dataView"
+            type="com.myniprojects.swiperecycler.DataView" />
+
+        <variable
+            name="clickListener"
+            type="com.myniprojects.swiperecycler.SwipeListener" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="false">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rootCL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_view"
+            android:onClick="@{()-> clickListener.onClick(dataView)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:id="@+id/frameDelete"
+                android:layout_width="1px"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:background="@drawable/gradient_view_delete"
+                android:onClick="@{()-> clickListener.onDeleteClick(dataView)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:padding="8dp"
+                    app:srcCompat="@android:drawable/ic_menu_delete"
+                    android:contentDescription="@string/delete" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frameSelect"
+                android:layout_width="1px"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:background="@drawable/gradient_view_select"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/select"
+                    android:padding="8dp"
+                    app:srcCompat="@android:drawable/ic_menu_add" />
+
+            </FrameLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/carBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@id/frameSelect"
+                app:layout_constraintStart_toEndOf="@id/frameDelete"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+                    android:id="@+id/txtContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="TextView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

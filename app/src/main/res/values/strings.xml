@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SwipeRecycler</string>
+    <string name="delete">Delete</string>
+    <string name="select">Select</string>
+</resources>
