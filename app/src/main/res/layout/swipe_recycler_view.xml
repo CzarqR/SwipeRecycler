@@ -92,7 +92,9 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="TextView"
+                    android:text="@{dataView.name}"
+                    android:textColor="#1B1919"
+                    android:textSize="38sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

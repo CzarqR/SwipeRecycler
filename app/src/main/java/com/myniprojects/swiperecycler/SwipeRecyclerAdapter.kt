@@ -17,7 +17,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 class SwipeRecyclerAdapter(
-        private val swipeListener: SwipeListener, maxSelect: Int, panelSize: Int
+        private val swipeListener: SwipeListener,  panelSize: Int
 ) : ListAdapter<DataView, SwipeRecyclerAdapter.ViewHolder>(
         SwipeDiffCallback()
 )
@@ -25,8 +25,7 @@ class SwipeRecyclerAdapter(
 
     companion object
     {
-        var MAX_SELECT_NUMBER: Int = 8
-            private set
+        const val MAX_SELECT_NUMBER: Int = 4
 
         var PANEL_SIZE = 125
             private set
@@ -38,7 +37,6 @@ class SwipeRecyclerAdapter(
 
     init
     {
-        MAX_SELECT_NUMBER = maxSelect
         PANEL_SIZE = panelSize
         _selectedValues.value = ArrayList()
     }
@@ -136,8 +134,11 @@ class SwipeRecyclerAdapter(
 
         private fun removeCar()
         {
-            selectedItems.value!!.remove(binding.dataView!!.id)
-            selectedItems.value = selectedItems.value
+            if (selectedItems.value!!.contains(binding.dataView!!.id))
+            {
+                selectedItems.value!!.remove(binding.dataView!!.id)
+                selectedItems.value = selectedItems.value
+            }
         }
 
 
