@@ -2,6 +2,7 @@ package com.myniprojects.swiperecycler
 
 import android.annotation.SuppressLint
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -128,8 +129,11 @@ class SwipeRecyclerAdapter(
 
         private fun addCar()
         {
-            selectedItems.value!!.add(binding.dataView!!.id)
-            selectedItems.value = selectedItems.value
+            if (!selectedItems.value!!.contains(binding.dataView!!.id))
+            {
+                selectedItems.value!!.add(binding.dataView!!.id)
+                selectedItems.value = selectedItems.value
+            }
         }
 
         private fun removeCar()
@@ -330,11 +334,13 @@ class SwipeDiffCallback : DiffUtil.ItemCallback<DataView>()
 {
     override fun areItemsTheSame(oldItem: DataView, newItem: DataView): Boolean
     {
+        Log.d("AppDebug", "areItemsTheSame")
         return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: DataView, newItem: DataView): Boolean
     {
+        Log.d("AppDebug", "areContentsTheSame")
         return oldItem == newItem
     }
 }
