@@ -18,9 +18,9 @@ import kotlin.math.max
 import kotlin.math.min
 
 class SwipeRecyclerAdapter(
-        private val swipeListener: SwipeListener,  panelSize: Int
+    private val swipeListener: SwipeListener, panelSize: Int
 ) : ListAdapter<DataView, SwipeRecyclerAdapter.ViewHolder>(
-        SwipeDiffCallback()
+    SwipeDiffCallback()
 )
 {
 
@@ -45,9 +45,9 @@ class SwipeRecyclerAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
         return ViewHolder.from(
-                parent,
-                _selectedValues,
-                swipeListener
+            parent,
+            _selectedValues,
+            swipeListener
         )
     }
 
@@ -59,9 +59,9 @@ class SwipeRecyclerAdapter(
 
 
     class ViewHolder private constructor(
-            private val binding: SwipeRecyclerViewBinding,
-            private val selectedItems: MutableLiveData<ArrayList<Int>>,
-            private val swipeListener: SwipeListener
+        private val binding: SwipeRecyclerViewBinding,
+        private val selectedItems: MutableLiveData<ArrayList<Int>>,
+        private val swipeListener: SwipeListener
     ) :
             RecyclerView.ViewHolder(binding.root), View.OnTouchListener
     {
@@ -97,15 +97,15 @@ class SwipeRecyclerAdapter(
         companion object
         {
             fun from(
-                    parent: ViewGroup,
-                    selectedCar: MutableLiveData<ArrayList<Int>>,
-                    swipeListener: SwipeListener
+                parent: ViewGroup,
+                selectedCar: MutableLiveData<ArrayList<Int>>,
+                swipeListener: SwipeListener
             ): ViewHolder
             {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = SwipeRecyclerViewBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(
-                        binding, selectedCar, swipeListener
+                    binding, selectedCar, swipeListener
                 )
             }
 
@@ -126,8 +126,7 @@ class SwipeRecyclerAdapter(
                 return selectedItems.value!!.size < MAX_SELECT_NUMBER
             }
 
-
-        private fun addCar()
+        private fun addItem()
         {
             if (!selectedItems.value!!.contains(binding.dataView!!.id))
             {
@@ -136,7 +135,7 @@ class SwipeRecyclerAdapter(
             }
         }
 
-        private fun removeCar()
+        private fun removeItem()
         {
             if (selectedItems.value!!.contains(binding.dataView!!.id))
             {
@@ -148,8 +147,8 @@ class SwipeRecyclerAdapter(
 
         @SuppressLint("ClickableViewAccessibility")
         fun bind(
-                dataView: DataView,
-                swipeListener: SwipeListener
+            dataView: DataView,
+            swipeListener: SwipeListener
         )
         {
             binding.dataView = dataView
@@ -225,7 +224,7 @@ class SwipeRecyclerAdapter(
                         handler.postDelayed({ //long click
                             wasLongClicked = true
                             v.performLongClick()
-                        }, LONG_CLICK_TIME)
+                                            }, LONG_CLICK_TIME)
                     }
                     MotionEvent.ACTION_UP ->
                     {
@@ -241,7 +240,7 @@ class SwipeRecyclerAdapter(
                                 else
                                 {
                                     status = 0
-                                    removeCar()
+                                    removeItem()
                                 }
                             }
                         }
@@ -252,7 +251,7 @@ class SwipeRecyclerAdapter(
                                 status > (PANEL_SIZE / 2) -> //show left
                                 {
                                     status = PANEL_SIZE
-                                    removeCar()
+                                    removeItem()
                                 }
                                 status < -(PANEL_SIZE / 2) -> //show right
                                 {
@@ -260,7 +259,7 @@ class SwipeRecyclerAdapter(
                                     if (canAdd)//car can be added
                                     {
                                         status = -PANEL_SIZE
-                                        addCar()
+                                        addItem()
                                     }
                                     else
                                     {
@@ -271,7 +270,7 @@ class SwipeRecyclerAdapter(
                                 else ->
                                 {
                                     status = 0
-                                    removeCar()
+                                    removeItem()
                                 }
                             }
                         }
@@ -347,11 +346,11 @@ class SwipeDiffCallback : DiffUtil.ItemCallback<DataView>()
 
 
 class SwipeListener(
-        val clickListener: (dataViewId: Int) -> Unit,
-        val clickLongListener: (dataViewId: Int) -> Unit,
-        val clickDeleteListener: (dataViewId: Int) -> Unit,
-        val scroll: (dy: Int) -> Unit,
-        val cannotSelectValue: () -> Unit
+    val clickListener: (dataViewId: Int) -> Unit,
+    val clickLongListener: (dataViewId: Int) -> Unit,
+    val clickDeleteListener: (dataViewId: Int) -> Unit,
+    val scroll: (dy: Int) -> Unit,
+    val cannotSelectValue: () -> Unit
 )
 {
     fun onClick(dataView: DataView) = clickListener(dataView.id)
