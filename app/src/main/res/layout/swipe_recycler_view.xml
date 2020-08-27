@@ -7,11 +7,11 @@
 
         <variable
             name="dataView"
-            type="com.myniprojects.swiperecycler.DataView" />
+            type="com.myniprojects.swiperecycler.database.DataView" />
 
         <variable
             name="clickListener"
-            type="com.myniprojects.swiperecycler.SwipeListener" />
+            type="com.myniprojects.swiperecycler.recycler.SwipeListener" />
 
     </data>
 
@@ -48,8 +48,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:adjustViewBounds="true"
-                    android:padding="8dp"
-                    app:srcCompat="@android:drawable/ic_menu_delete"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/delete"
                     android:contentDescription="@string/delete" />
 
             </FrameLayout>
@@ -71,8 +71,8 @@
                     android:layout_gravity="center"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/select"
-                    android:padding="8dp"
-                    app:srcCompat="@android:drawable/ic_menu_add" />
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/selected" />
 
             </FrameLayout>
 
@@ -94,7 +94,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="@{dataView.name}"
                     android:textColor="#1B1919"
-                    android:textSize="38sp"
+                    android:textSize="50sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

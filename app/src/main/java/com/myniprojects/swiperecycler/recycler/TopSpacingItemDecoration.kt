@@ -1,4 +1,4 @@
-package com.myniprojects.swiperecycler
+package com.myniprojects.swiperecycler.recycler
 
 import android.graphics.Rect
 import android.view.View

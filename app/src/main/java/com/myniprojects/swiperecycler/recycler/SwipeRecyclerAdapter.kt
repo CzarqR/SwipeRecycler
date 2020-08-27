@@ -1,8 +1,7 @@
-package com.myniprojects.swiperecycler
+package com.myniprojects.swiperecycler.recycler
 
 import android.annotation.SuppressLint
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -12,6 +11,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.myniprojects.swiperecycler.R
+import com.myniprojects.swiperecycler.database.DataView
 import com.myniprojects.swiperecycler.databinding.SwipeRecyclerViewBinding
 import kotlin.math.abs
 import kotlin.math.max
@@ -333,13 +334,11 @@ class SwipeDiffCallback : DiffUtil.ItemCallback<DataView>()
 {
     override fun areItemsTheSame(oldItem: DataView, newItem: DataView): Boolean
     {
-        Log.d("AppDebug", "areItemsTheSame")
         return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: DataView, newItem: DataView): Boolean
     {
-        Log.d("AppDebug", "areContentsTheSame")
         return oldItem == newItem
     }
 }

@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+// Add for Room etc.
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
 
@@ -38,8 +41,26 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    // RecyclerView and card view
-    implementation "androidx.cardview:cardview:1.0.0"
+    // RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    // CardView
+    implementation "androidx.cardview:cardview:1.0.0"
+
+
+    // LiveData and ViewModel
+    def lifecycle_version = "2.2.0"
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+
+    // Room
+    def room_version = "2.2.5"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$room_version"
+
+    // FloatingActionButton
+    implementation 'com.google.android.material:material:1.2.0'
 }
