@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
-
     <data>
 
         <variable
@@ -26,7 +25,6 @@
         app:cardPreventCornerOverlap="false"
         >
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/rootCL"
             android:layout_width="match_parent"
@@ -36,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             >
-
+            <!-- Delete panel-->
             <FrameLayout
                 android:id="@+id/frameDelete"
                 android:layout_width="1px"
@@ -61,6 +59,7 @@
 
             </FrameLayout>
 
+            <!-- Select panel-->
             <FrameLayout
                 android:id="@+id/frameSelect"
                 android:layout_width="1px"
@@ -71,7 +70,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 >
-
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -85,6 +83,7 @@
 
             </FrameLayout>
 
+            <!-- Main panel-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/carBackground"
                 android:layout_width="0dp"
@@ -93,7 +92,6 @@
                 app:layout_constraintStart_toEndOf="@id/frameDelete"
                 app:layout_constraintTop_toTopOf="parent"
                 >
-
 
                 <TextView
                     android:id="@+id/txtContent"
@@ -110,13 +108,10 @@
                     app:layout_constraintTop_toTopOf="parent"
                     />
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </androidx.cardview.widget.CardView>
-
 
 </layout>

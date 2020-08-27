@@ -2,6 +2,7 @@ package com.myniprojects.swiperecycler.recycler
 
 import android.annotation.SuppressLint
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -24,22 +25,22 @@ class SwipeRecyclerAdapter(
     SwipeDiffCallback()
 )
 {
-
     companion object
     {
-        const val MAX_SELECT_NUMBER: Int = 4
+        const val MAX_SELECT_NUMBER: Int = 4 // maximum number of items that user can select
 
-        var PANEL_SIZE = 125
+        var PANEL_SIZE = 125 // delete and select panel width, base is 125 but in constructor we can pass new value based on DP which override this
             private set
     }
 
+    // LiveData which holds all selected items in Recycler
     private val _selectedValues: MutableLiveData<ArrayList<Int>> = MutableLiveData()
     val selectedValues: LiveData<ArrayList<Int>>
         get() = _selectedValues
 
     init
     {
-        PANEL_SIZE = panelSize
+        PANEL_SIZE = panelSize //
         _selectedValues.value = ArrayList()
     }
 
@@ -62,15 +63,14 @@ class SwipeRecyclerAdapter(
     class ViewHolder private constructor(
         private val binding: SwipeRecyclerViewBinding,
         private val selectedItems: MutableLiveData<ArrayList<Int>>,
-        private val swipeListener: SwipeListener
+        private val swipeListener: SwipeListener // listener which enables to handle click etc.
     ) :
             RecyclerView.ViewHolder(binding.root), View.OnTouchListener
     {
-
-        private var xStart = 0F
+        private var xStart = 0F // variables which track swiping in onTouch event
         private var lastY = 0F
         private var yStart = 0F
-        private val handler: Handler = Handler()
+        private val handler: Handler = Handler() // Handler enable to detect long click
         private var isLongClickCanceled = false
         private var wasLongClicked = false
         private var startScrolling = false
@@ -110,8 +110,8 @@ class SwipeRecyclerAdapter(
                 )
             }
 
-            private const val LONG_CLICK_TIME = 550L
-            private const val CLICK_DISTANCE = 75
+            private const val LONG_CLICK_TIME = 550L // time in millis to detect long click
+            private const val CLICK_DISTANCE = 75 //distance in pixels to disable click/long click and enable scrolling or swiping
         }
 
 
@@ -129,7 +129,8 @@ class SwipeRecyclerAdapter(
 
         private fun addItem()
         {
-            if (!selectedItems.value!!.contains(binding.dataView!!.id))
+            Log.d("appD", "Add")
+            if (!isValueSelected)
             {
                 selectedItems.value!!.add(binding.dataView!!.id)
                 selectedItems.value = selectedItems.value
@@ -138,7 +139,8 @@ class SwipeRecyclerAdapter(
 
         private fun removeItem()
         {
-            if (selectedItems.value!!.contains(binding.dataView!!.id))
+            Log.d("appD", "Remove")
+            if (isValueSelected)
             {
                 selectedItems.value!!.remove(binding.dataView!!.id)
                 selectedItems.value = selectedItems.value
@@ -207,7 +209,7 @@ class SwipeRecyclerAdapter(
             rightPanel.setBackgroundResource(R.drawable.gradient_view_select)
         }
 
-
+        // here swiping, clicking and scrolling is detected. MotionEvent is tracked and function recognize what to do
         override fun onTouch(v: View?, event: MotionEvent?): Boolean
         {
             if (v != null && event != null)
@@ -257,7 +259,7 @@ class SwipeRecyclerAdapter(
                                 status < -(PANEL_SIZE / 2) -> //show right
                                 {
 
-                                    if (canAdd)//car can be added
+                                    if (isValueSelected || canAdd) //car can be added
                                     {
                                         status = -PANEL_SIZE
                                         addItem()
@@ -330,6 +332,7 @@ class SwipeRecyclerAdapter(
 
 }
 
+// DiffUtil class, it helps to better calculate when to refresh Recycler
 class SwipeDiffCallback : DiffUtil.ItemCallback<DataView>()
 {
     override fun areItemsTheSame(oldItem: DataView, newItem: DataView): Boolean
@@ -343,7 +346,7 @@ class SwipeDiffCallback : DiffUtil.ItemCallback<DataView>()
     }
 }
 
-
+// listener which can handle clicking, swiping, scrolling and selecting too many items
 class SwipeListener(
     val clickListener: (dataViewId: Int) -> Unit,
     val clickLongListener: (dataViewId: Int) -> Unit,

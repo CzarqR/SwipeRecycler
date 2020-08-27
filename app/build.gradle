@@ -47,7 +47,6 @@ dependencies {
     // CardView
     implementation "androidx.cardview:cardview:1.0.0"
 
-
     // LiveData and ViewModel
     def lifecycle_version = "2.2.0"
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
