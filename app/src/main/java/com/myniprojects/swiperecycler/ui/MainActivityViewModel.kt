@@ -8,10 +8,6 @@ import kotlinx.coroutines.*
 
 class MainActivityViewModel(private val database: DataViewDAO) : ViewModel()
 {
-    companion object
-    {
-        private var id: Int = 0
-    }
 
     val dataViewItems: LiveData<List<DataView>>
     private var viewModelJob = Job()
@@ -41,7 +37,7 @@ class MainActivityViewModel(private val database: DataViewDAO) : ViewModel()
     {
         uiScope.launch {
             withContext(Dispatchers.IO) {
-                database.insert(DataView((id++).toString()))
+                database.insert(DataView())
             }
         }
     }
