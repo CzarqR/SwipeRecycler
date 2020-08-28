@@ -10,7 +10,7 @@ What is this RecyclerView doing?
 
 **How it looks:**
 
-![Swipe RecyclerView](https://im2.ezgif.com/tmp/ezgif-2-9de61d94f830.gif)
+![Swipe RecyclerView](https://i.imgur.com/KrFAEkC.mp4)
 
 <hr>
 
