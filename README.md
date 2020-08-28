@@ -10,7 +10,9 @@ What is this RecyclerView doing?
 
 **How it looks:**
 
-![Swipe RecyclerView](https://i.imgur.com/KrFAEkC.mp4)
+
+[![Swipe RecyclerView][1]][1]
+
 
 <hr>
 
@@ -60,7 +62,7 @@ Start project:
 
 File structure:
 
-[![enter image description here][1]][1]
+[![enter image description here][2]][2]
 
 
 **1. Add Gradle dependencies to RecyclerView and CardView**
@@ -710,4 +712,5 @@ class MainActivity : AppCompatActivity()
 ```
 
 
-  [1]: https://i.stack.imgur.com/DDpLV.png
+  [1]: https://i.stack.imgur.com/YSv31.gif
+  [2]: https://i.stack.imgur.com/DDpLV.png
